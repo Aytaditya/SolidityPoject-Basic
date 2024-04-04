@@ -5,22 +5,24 @@ const solc=require('solc'); // solidity compiler
 const inboxPath=path.resolve(__dirname,'contracts','Inbox.sol'); // path to Inbox.sol
 const source=fs.readFileSync(inboxPath,'utf8'); // read the source code of Inbox.sol
 
-const input = {
-    language: 'Solidity', // language used
-    sources: {
-        'Inbox.sol': {
-            content: source    // source code of Inbox.sol
-        }
-    },
-    settings: {
-        outputSelection: {
-            '*': {             // return all output
-                '*': ['*']  // return everything
-            }
-        }
-    }
-};
+// const input = {
+// language: 'Solidity', // language used
+// sources: {
+// 'Inbox.sol': {
+// content: source    // source code of Inbox.sol
+// }
+//     },
+// settings: {
+// outputSelection: {
+// '*': {             // return all output
+// '*': ['*']  // return everything
+// }
+//         }
+//     }
+// };
 
-const output = JSON.parse(solc.compile(JSON.stringify(input)));
+// const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
-console.log(output);
+// console.log(output);
+
+console.log(solc.compile(source,1)); // compile the source code of Inbox.sol

@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node": "^18.20.0",
-    "solc": "^0.8.25"
+    "solc": "^0.4.17"
   }
 }
