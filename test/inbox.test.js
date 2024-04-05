@@ -1,10 +1,30 @@
+const assert = require('assert'); 
+const ganache = require('ganache'); 
+const {Web3} = require('web3');  
+const { abi, bytecode } = require('../compile'); 
 
-const assert = require('assert'); // assertion module is used in testing to compare the actual output with the expected output
-const ganache = require('ganache'); // ganache is used to create a local ethereum network 
-const {Web3} = require('web3'); //// web3 is used to interact with the ethereum network
+const web3 = new Web3(ganache.provider()); 
 
-// web3 and ganche communicate through a provider understand it as a telephone
+let accounts;
+let inbox;
 
-const web3 = new Web3(ganache.provider()); // constructor function to create an instance of web3 different from Web3 
+beforeEach(async () => {
+    // Retrieve list of all accounts 
+    accounts = await web3.eth.getAccounts();
+    console.log(accounts);
 
+    // Deploy the contract
+    //console.log('ABI:', abi);
+    inbox = await new web3.eth.Contract(abi)
+    .deploy({ data: bytecode, arguments: ["Hey this is Aditya"] }) 
+    .send({ from: accounts[0], gas: '1000000', type: '0x0'});
+    console.log('Contract deployed at address:', inbox.options.address);
+    console.log(inbox)
 
+});
+
+describe('Inbox', () => {
+    it('deploys a contract', () => { 
+        assert.ok(inbox.options.address); 
+    });
+});

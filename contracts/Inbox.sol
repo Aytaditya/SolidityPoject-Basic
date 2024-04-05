@@ -1,17 +1,19 @@
 
-pragma solidity ^0.4.17;
 
-contract inbox{
+pragma solidity ^0.8.11;
+
+contract Inbox {
     string public message;
 
-    function inbox(string initialMessage) public {
-        message=initialMessage;
+    constructor(string memory initialMessage) {
+        message = initialMessage;
+    }
 
+    function setMessage(string memory newMessage) public {
+        message = newMessage;
     }
-    function setMessage(string newMessage) public{
-        message=newMessage;
-    }
-    function getMessage() public view returns (string){
+
+    function getMessage() public view returns (string memory) {
         return message;
     }
 }

@@ -1,4 +1,6 @@
 
+//           THIS FILE HAS EXAMPLE OF TEST WITH MOCHA AND ASSERT MODULE
+
 const assert = require('assert'); // assertion module is used in testing to compare the actual output with the expected output
 const ganache = require('ganache'); // ganache is used to create a local ethereum network 
 const {Web3} = require('web3'); //// web3 is used to interact with the ethereum network
